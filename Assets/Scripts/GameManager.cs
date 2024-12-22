@@ -19,16 +19,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _player.DieEvent.AddListener(LoseHandler);
-        //_player.AliveEvent.AddListener(RestartHandler);
     }
-
-    /*private void RestartHandler()
-    {
-        button.gameObject.SetActive(false);
-        _tileGenerator.SetEnablind(true);
-        SetCoin();
-    }*/
-
     private void LoseHandler()
     {
         Debug.Log("end");
@@ -37,15 +28,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetCoin()
     {
-        
         _coinsCount = 0;
         _coinsText.text = _coinsCount.ToString();
 
