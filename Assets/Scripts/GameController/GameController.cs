@@ -1,16 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
+using Zenject;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private TextMeshProUGUI _coinsText;
+    [SerializeField] private TextMeshProUGUI _recordText;
+    [SerializeField] private Player _player;
+    [SerializeField] private TileGenerator _tileGenerator;
+    [SerializeField] private Tile _tile;
+    private int _coinsCount;
+    public int CoinsCount => _coinsCount;
+
+    [Inject] public SaveManager _saveManager{get; set;}
+
+    [SerializeField] private UnityEngine.UI.Button button;
+
+
     void Start()
     {
-        // Initialization code here
+        _player.DieEvent.AddListener(LoseHandler);
+        _recordText.text = _saveManager.PlayerData.record.ToString();
+    }
+    private void LoseHandler()
+    {
+        Debug.Log("end");
+        _tileGenerator.SetEnablind(false);
+        button.gameObject.SetActive(true);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetCoin()
     {
-        // Game logic here
+        _coinsCount = 0;
+        _coinsText.text = _coinsCount.ToString();
+
     }
+
+    public void AddCoin()
+    {
+        _coinsCount++;
+        _coinsText.text = _coinsCount.ToString();
+        if (_coinsCount > _saveManager.PlayerData.record)
+        {
+            _recordText.text = _coinsCount.ToString();
+        }
+    }
+
+    
 }
