@@ -43,6 +43,13 @@ public class GameInstaller : MonoInstaller
         return _instance;
     }
 
+    [SerializeField] private AudioManager _audioManager;
+    public AudioManager AudioManager
+    {
+        get => _audioManager;
+        set => _audioManager = value;
+    }
+
     private void Awake()
     {
         if (_instance == null)
