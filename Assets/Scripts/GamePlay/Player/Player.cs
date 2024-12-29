@@ -12,14 +12,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 5;
     [SerializeField] private CharacterController _characterController;
 
-    [Inject] public GameController _gameManager{ get; set;}
-    [Inject] public SaveManager _saveManager{ get; set;}
+    private GameController _gameController;
+    private SaveManager _saveManager;
 
     private Animator _animator;
     private bool _isAlive = true;
 
+    private PlayerDataSO PlayerData{ get; set; }
+
     void Start()
     {
+        _saveManager = GameInstaller.Instance.SaveManager;
+        _gameController = GameInstaller.Instance.GameController;
+        PlayerData = _saveManager.PlayerData;
         _animator = GetComponent<Animator>();
     }
 
@@ -40,12 +45,12 @@ public class Player : MonoBehaviour
         _isAlive = false;
         DieEvent?.Invoke();
 
-        _saveManager.PlayerData.coin = _gameManager.CoinsCount + _saveManager.PlayerData.coin;
-
-        if (_saveManager.PlayerData.coin > _saveManager.PlayerData.record)
+        if (_gameController.CoinsCount > PlayerData.record)
         {
-            _saveManager.PlayerData.record = _saveManager.PlayerData.coin;
+            PlayerData.record = _gameController.CoinsCount;
         }
+        PlayerData.coin = _gameController.CoinsCount + PlayerData.coin;
+        _saveManager.SavePlayer(PlayerData);
     }
 
 

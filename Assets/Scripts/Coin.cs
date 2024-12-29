@@ -11,10 +11,16 @@ public class Coin : MonoBehaviour
         transform.Rotate(0, _speed, 0);
     }
 
-    [Inject] public GameController _gameManager{ get; set;}
+    private GameController _gameController;
+
+    void Start()
+    {
+        _gameController = GameInstaller.Instance.GameController;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        _gameManager.AddCoin();
+        _gameController.AddCoin();
         Destroy(gameObject);
     }
 }

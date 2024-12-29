@@ -16,13 +16,13 @@ public class GameController : MonoBehaviour
     private int _coinsCount;
     public int CoinsCount => _coinsCount;
 
-    [Inject] public SaveManager _saveManager{get; set;}
+    private SaveManager _saveManager;
 
     [SerializeField] private UnityEngine.UI.Button button;
 
 
     void Start()
-    {
+    {   _saveManager = GameInstaller.Instance.SaveManager;
         _player.DieEvent.AddListener(LoseHandler);
         _recordText.text = _saveManager.PlayerData.record.ToString();
     }
