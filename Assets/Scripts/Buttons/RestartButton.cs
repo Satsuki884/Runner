@@ -14,7 +14,6 @@ public class RestartButton : MonoBehaviour
     [SerializeField] private TileGenerator _tileGenerator;
     [SerializeField] private Tile _tile;
     [SerializeField] private Player _player;
-    private GameController _gameController;
     [SerializeField] private UnityEngine.UI.Button _button;
 
     [SerializeField] private TextMeshProUGUI _coinsText;
@@ -22,7 +21,6 @@ public class RestartButton : MonoBehaviour
 
     void Start()
     {
-        _gameController = GameInstaller.Instance.GameController;
         if (_button != null)
         {
             _button.onClick.RemoveAllListeners();

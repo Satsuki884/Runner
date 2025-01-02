@@ -10,6 +10,12 @@ public class SettingController : MonoBehaviour
     [SerializeField] private GameObject _settingPanel;
     [SerializeField] private Button _openSettingsButton;
     [SerializeField] private Button _closeSettingsButton;
+    private string QualityLevel = "QualityLevel";
+    private string Music = "Music";
+    
+    [Header("Audio")]
+    [SerializeField] private Slider _volumeSlider;
+    [SerializeField] private AudioMixer _audioMixer;
 
     private void Start()
     {
@@ -22,18 +28,15 @@ public class SettingController : MonoBehaviour
     {
         _openSettingsButton.onClick.RemoveAllListeners();
         _closeSettingsButton.onClick.RemoveAllListeners();
-        _volumeSliderMusic.onValueChanged.RemoveAllListeners();
+        _volumeSlider.onValueChanged.RemoveAllListeners();
         _openSettingsButton.onClick.AddListener(OpenSettings);
         _closeSettingsButton.onClick.AddListener(CloseSettings);
         
-        _volumeSliderMusic.onValueChanged.AddListener(SetVolumeMusic);
+        _volumeSlider.onValueChanged.AddListener(SetVolumeMusic);
         
         _qualityDropdown.onValueChanged.AddListener(SetQuality);
         _qualityDropdown.onValueChanged.AddListener(SetQuality);
     }
-
-    private string QualityLevel = "QualityLevel";
-    private string Music = "Music";
 
     public void SetBetweenSession()
     {
@@ -47,7 +50,7 @@ public class SettingController : MonoBehaviour
         {
             Debug.Log(Music);
             float savedVolume = PlayerPrefs.GetFloat(Music);
-            _volumeSliderMusic.value = savedVolume;
+            _volumeSlider.value = savedVolume;
             _audioMixer.SetFloat(Music, savedVolume);
         }
 
@@ -63,9 +66,7 @@ public class SettingController : MonoBehaviour
         _settingPanel.SetActive(false);
     }
 
-    [Header("Audio")]
-    [SerializeField] private Slider _volumeSliderMusic;
-    [SerializeField] private AudioMixer _audioMixer;
+    
 
     public void SetVolumeMusic(float volume)
     {

@@ -278,7 +278,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 210560980571000474}
   - {fileID: 4701698161034253483}
   - {fileID: 3334875390105401862}
   m_Father: {fileID: 0}
@@ -295,59 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f206a2e80e96b934e90b8212eafca8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameController: {fileID: 5690597638585839586}
   _saveManager: {fileID: 6212627516947352789}
   _audioManager: {fileID: 8092643861453261040}
---- !u!1 &4892582457923003256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 210560980571000474}
-  - component: {fileID: 5690597638585839586}
-  m_Layer: 0
-  m_Name: GameController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &210560980571000474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892582457923003256}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 133.71747, y: 248.24039, z: -0.56554157}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2534878329367035130}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5690597638585839586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892582457923003256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79775ba69e1f3c489e34c96d549fe6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _coinsText: {fileID: 0}
-  _recordText: {fileID: 0}
-  _player: {fileID: 0}
-  _tileGenerator: {fileID: 0}
-  _tile: {fileID: 8048372545305118695, guid: bf35b768d0f1fd246b8440860d629017, type: 3}
-  button: {fileID: 0}
 --- !u!1 &6172114924838132051
 GameObject:
   m_ObjectHideFlags: 0

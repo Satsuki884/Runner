@@ -10,4 +10,9 @@ public class CharacterDataSO : ScriptableObject
 
     [SerializeField] private int _price;
     public int Price => _price;
+
+    [SerializeField] private float _speed;
+    public float Speed => _speed;
+    [SerializeField] private float _coin;
+    public float Coin => _coin;
 }

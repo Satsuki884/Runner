@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 5;
     [SerializeField] private CharacterController _characterController;
 
-    private GameController _gameController;
     private SaveManager _saveManager;
 
     private Animator _animator;
@@ -20,10 +19,11 @@ public class Player : MonoBehaviour
 
     private PlayerDataSO PlayerData{ get; set; }
 
+    [SerializeField] private GameController _gameController;
+
     void Start()
     {
         _saveManager = GameInstaller.Instance.SaveManager;
-        _gameController = GameInstaller.Instance.GameController;
         PlayerData = _saveManager.PlayerData;
         _animator = GetComponent<Animator>();
     }

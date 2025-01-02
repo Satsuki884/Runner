@@ -18,12 +18,12 @@ public class GameInstaller : MonoInstaller
         }
     }
 
-    [SerializeField] private GameController _gameController;
-    public GameController GameController
-    {
-        get => _gameController;
-        set => _gameController = value;
-    }
+    // [SerializeField] private GameController _gameController;
+    // public GameController GameController
+    // {
+    //     get => _gameController;
+    //     set => _gameController = value;
+    // }
 
     [SerializeField] private SaveManager _saveManager;
     public SaveManager SaveManager
