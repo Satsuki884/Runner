@@ -8,28 +8,31 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Zenject;
 
-public class RestartButton : MonoBehaviour
+namespace Runner
 {
-
-    [SerializeField] private TileGenerator _tileGenerator;
-    [SerializeField] private Tile _tile;
-    [SerializeField] private Player _player;
-    [SerializeField] private UnityEngine.UI.Button _button;
-
-    [SerializeField] private TextMeshProUGUI _coinsText;
-
-
-    void Start()
+    public class RestartButton : MonoBehaviour
     {
-        if (_button != null)
+
+        [SerializeField] private TileGenerator _tileGenerator;
+        [SerializeField] private Tile _tile;
+        [SerializeField] private Player _player;
+        [SerializeField] private UnityEngine.UI.Button _button;
+
+        [SerializeField] private TextMeshProUGUI _coinsText;
+
+
+        void Start()
         {
-            _button.onClick.RemoveAllListeners();
-            _button.onClick.AddListener(RestartLevel);
+            if (_button != null)
+            {
+                _button.onClick.RemoveAllListeners();
+                _button.onClick.AddListener(RestartLevel);
+            }
         }
-    }
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

@@ -1,18 +1,20 @@
 using UnityEngine;
-
-[CreateAssetMenu(fileName = "CharacterData", menuName = "Data/CharacterDataSO", order = 1)]
-public class CharacterDataSO : ScriptableObject
+namespace Runner
 {
-    [SerializeField] private string _characterName;
-    [SerializeField] private GameObject _characterPrefab;
-    public string CharacterName => _characterName;
-    public GameObject CharacterPrefab{ get; set; }
+    [CreateAssetMenu(fileName = "CharacterData", menuName = "Data/CharacterDataSO", order = 1)]
+    public class CharacterDataSO : ScriptableObject
+    {
+        [SerializeField] private string _characterName;
+        [SerializeField] private GameObject _characterPrefab;
+        public string CharacterName => _characterName;
+        public GameObject CharacterPrefab { get; set; }
 
-    [SerializeField] private int _price;
-    public int Price => _price;
+        [SerializeField] private int _price;
+        public int Price => _price;
 
-    [SerializeField] private float _speed;
-    public float Speed => _speed;
-    [SerializeField] private float _coin;
-    public float Coin => _coin;
+        [SerializeField] private float _speed;
+        public float Speed => _speed;
+        [SerializeField] private float _coin;
+        public float Coin => _coin;
+    }
 }

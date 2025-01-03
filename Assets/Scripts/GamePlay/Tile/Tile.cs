@@ -2,95 +2,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+namespace Runner
 {
-
-
-
-    [SerializeField] private List<Transform> _points = new List<Transform>();
-
-    private float _speed;
-
-    private GameObject _coin;
-    private GameObject _bomb;
-    private float _startSpawnBomb;
-    private float _timer;
-    private bool _isMove = true;
-
-    void Start()
+    public class Tile : MonoBehaviour
     {
-        if (_coin == null || _bomb == null)
+
+
+
+        [SerializeField] private List<Transform> _points = new List<Transform>();
+
+        private float _speed;
+
+        private GameObject _coin;
+        private GameObject _bomb;
+        private float _startSpawnBomb;
+        private float _timer;
+        private bool _isMove = true;
+
+        void Start()
         {
-            return;
-        }
-
-        int randomPointIndex = Random.Range(0, _points.Count);
-
-        if (_timer < _startSpawnBomb)
-        {
-            CreateObject(randomPointIndex, _coin);
-        }
-        else
-        {
-
-            float changeSpawnBomb = 20 + _timer / 4;
-            changeSpawnBomb = Mathf.Clamp(changeSpawnBomb, 0, 60);
-
-            if (Random.Range(0, 100) < changeSpawnBomb)
+            if (_coin == null || _bomb == null)
             {
-                CreateObject(randomPointIndex, _bomb);
+                return;
             }
-            else
+
+            int randomPointIndex = Random.Range(0, _points.Count);
+
+            if (_timer < _startSpawnBomb)
             {
                 CreateObject(randomPointIndex, _coin);
             }
+            else
+            {
+
+                float changeSpawnBomb = 20 + _timer / 4;
+                changeSpawnBomb = Mathf.Clamp(changeSpawnBomb, 0, 60);
+
+                if (Random.Range(0, 100) < changeSpawnBomb)
+                {
+                    CreateObject(randomPointIndex, _bomb);
+                }
+                else
+                {
+                    CreateObject(randomPointIndex, _coin);
+                }
+
+            }
 
         }
 
-    }
-
-    private void CreateObject(int randomPointIndex, GameObject objectType)
-    {
-        GameObject newObject = Instantiate(objectType, _points[randomPointIndex].position, Quaternion.identity);
-        newObject.transform.SetParent(transform);
-    }
-
-    public void Initialize(GameObject coin, GameObject bomb, float startSpawnBomb, float timer)
-    {
-        if (coin == null || bomb == null)
+        private void CreateObject(int randomPointIndex, GameObject objectType)
         {
-            return;
+            GameObject newObject = Instantiate(objectType, _points[randomPointIndex].position, Quaternion.identity);
+            newObject.transform.SetParent(transform);
         }
-        _coin = coin;
-        _bomb = bomb;
-        _startSpawnBomb = startSpawnBomb;
-        _timer = timer;
 
-    }
-
-
-    void FixedUpdate()
-    {
-        if (_isMove == false)
+        public void Initialize(GameObject coin, GameObject bomb, float startSpawnBomb, float timer)
         {
-            return;
-        }
-        transform.Translate(Vector3.back * _speed * Time.fixedDeltaTime);
-    }
+            if (coin == null || bomb == null)
+            {
+                return;
+            }
+            _coin = coin;
+            _bomb = bomb;
+            _startSpawnBomb = startSpawnBomb;
+            _timer = timer;
 
-    public void SetSpeed(float speed)
-    {
-        //Debug.Log(speed);
-        if (speed < 0)
+        }
+
+
+        void FixedUpdate()
         {
-            Debug.LogError("speed < 0");
-            return;
+            if (_isMove == false)
+            {
+                return;
+            }
+            transform.Translate(Vector3.back * _speed * Time.fixedDeltaTime);
         }
-        _speed = speed;
-    }
 
-    public void SetMoving(bool state)
-    {
-        _isMove = state;
+        public void SetSpeed(float speed)
+        {
+            //Debug.Log(speed);
+            if (speed < 0)
+            {
+                Debug.LogError("speed < 0");
+                return;
+            }
+            _speed = speed;
+        }
+
+        public void SetMoving(bool state)
+        {
+            _isMove = state;
+        }
     }
 }

@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+namespace Runner
 {
-    private void OnTriggerEnter(Collider other)
+    public class Bomb : MonoBehaviour
     {
-        Debug.Log("TOU DIE!");
-        if (other.TryGetComponent(out Player player))
+        private void OnTriggerEnter(Collider other)
         {
-            Destroy(gameObject);
-            player.Die();
+            Debug.Log("TOU DIE!");
+            if (other.TryGetComponent(out Player player))
+            {
+                Destroy(gameObject);
+                player.Die();
+            }
         }
-    }
 
+    }
 }

@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Coin : MonoBehaviour
+namespace Runner
 {
-    [SerializeField] private float _speed;
-    private GameController _gameController;
-    private void Awake()
+    public class Coin : MonoBehaviour
     {
-        _gameController = FindObjectOfType<GameController>();
-    }
-    void Update()
-    {
-        transform.Rotate(0, _speed, 0);
-    }
+        [SerializeField] private float _speed;
+        private GameController _gameController;
+        private void Awake()
+        {
+            _gameController = FindObjectOfType<GameController>();
+        }
+        void Update()
+        {
+            transform.Rotate(0, _speed, 0);
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        _gameController.AddCoin();
-        Destroy(gameObject);
+        private void OnTriggerEnter(Collider other)
+        {
+            _gameController.AddCoin();
+            Destroy(gameObject);
+        }
     }
 }

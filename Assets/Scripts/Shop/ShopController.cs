@@ -6,84 +6,95 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class ShopController : MonoBehaviour
+namespace Runner
 {
-    [SerializeField] private GameObject _shopPanel;
-    [SerializeField] private Transform _shopItemsContainer;
-    // [SerializeField] private Transform _shopMenu;
-    [SerializeField] private Button _openShopButton;
-    [SerializeField] private Button _closeShopButton;
-    [SerializeField] private GameObject _characterItemPrefab;
-
-    // [Header("Characters")]
-    // // [SerializeField] private GameObject _charactersPrefab;
-    // [SerializeField] private GameObject _charactersParent;
-    // [SerializeField] private TMP_Text _characterName;
-    // [SerializeField] private Button _characterBuyButton;
-    // [SerializeField] private TMP_Text _characterSpeed;
-    // [SerializeField] private TMP_Text _characterCoin;
-
-    private CharactersSO Characters;
-
-    private float _itemHeight;
-    private float _itemSpacing = 0.5f;
-
-
-
-    private void Start()
+    public class ShopController : MonoBehaviour
     {
-        Characters = GameInstaller.Instance.SaveManager.Characters;
-        AddEventListeners();
-        CloseShop();
-        CreateCharacterItems();
-        
-    }
+        [SerializeField] private GameObject _shopPanel;
+        [SerializeField] private Transform _shopItemsContainer;
+        // [SerializeField] private Transform _shopMenu;
+        [SerializeField] private Button _openShopButton;
+        [SerializeField] private Button _closeShopButton;
+        [SerializeField] private GameObject _characterItemPrefab;
 
-    private void CreateCharacterItems()
-    {
+        // [Header("Characters")]
+        // // [SerializeField] private GameObject _charactersPrefab;
+        // [SerializeField] private GameObject _charactersParent;
+        // [SerializeField] private TMP_Text _characterName;
+        // [SerializeField] private Button _characterBuyButton;
+        // [SerializeField] private TMP_Text _characterSpeed;
+        // [SerializeField] private TMP_Text _characterCoin;
 
-        _itemHeight = _shopItemsContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.y;
-        Destroy(_shopItemsContainer.GetChild(0).gameObject);
-        _shopItemsContainer.DetachChildren();
+        private CharactersSO Characters;
 
-        ShopCharacterItemController itemUI;
+        private float _itemWidth;
+        // private float _itemSpacing = 0.5f;
 
-        foreach (var character in Characters.unlockedCharacters)
+
+
+        private void Start()
         {
-            itemUI = Instantiate(_characterItemPrefab, _shopItemsContainer.transform).GetComponent<ShopCharacterItemController>();
-            // Debug.Log(character.CharacterPrefab);
+            Characters = GameInstaller.Instance.SaveManager.Characters;
+            AddEventListeners();
+            CloseShop();
+            CreateCharacterItems();
 
-            itemUI.SetCharacterData(character, character.CharacterPrefab, "Use");
         }
 
-        foreach (var character in Characters.lockedCharacters)
-        {
-            itemUI = Instantiate(_characterItemPrefab, _shopItemsContainer.transform).GetComponent<ShopCharacterItemController>();
+        private string _use = "Use";
 
-            itemUI.SetCharacterData(character, character.CharacterPrefab, character.Price.ToString());
+        private void CreateCharacterItems()
+        {
+
+            _itemWidth = _shopItemsContainer.GetChild(0).GetComponent<RectTransform>().sizeDelta.x;
+            Destroy(_shopItemsContainer.GetChild(0).gameObject);
+            _shopItemsContainer.DetachChildren();
+
+            ShopCharacterItemController itemUI;
+            float xOffset = 0f;
+
+            foreach (var character in Characters.unlockedCharacters)
+            {
+                itemUI = Instantiate(_characterItemPrefab, _shopItemsContainer.transform).GetComponent<ShopCharacterItemController>();
+
+                itemUI.SetCharacterData(character, _use);
+
+                RectTransform itemRect = itemUI.GetComponent<RectTransform>();
+                itemRect.anchoredPosition = new Vector2(xOffset, 0);
+                xOffset += _itemWidth;
+            }
+
+            foreach (var character in Characters.lockedCharacters)
+            {
+                itemUI = Instantiate(_characterItemPrefab, _shopItemsContainer.transform).GetComponent<ShopCharacterItemController>();
+
+                itemUI.SetCharacterData(character, character.Price.ToString());
+
+                RectTransform itemRect = itemUI.GetComponent<RectTransform>();
+                itemRect.anchoredPosition = new Vector2(xOffset, 0);
+                xOffset += _itemWidth;
+            }
+
+            _shopItemsContainer.GetComponent<RectTransform>().sizeDelta =
+            new Vector2(xOffset - _itemWidth, _shopItemsContainer.GetComponent<RectTransform>().sizeDelta.y);
         }
 
-        _shopItemsContainer.GetComponent<RectTransform>().sizeDelta =
-                new Vector2(_shopItemsContainer.GetComponent<RectTransform>().sizeDelta.y,
-                            (_itemHeight + _itemSpacing) * (Characters.unlockedCharacters.Count + Characters.lockedCharacters.Count - 2) + _itemSpacing);
+        public void AddEventListeners()
+        {
+            _openShopButton.onClick.RemoveAllListeners();
+            _closeShopButton.onClick.RemoveAllListeners();
+            _openShopButton.onClick.AddListener(OpenShop);
+            _closeShopButton.onClick.AddListener(CloseShop);
+        }
 
-    }
+        private void OpenShop()
+        {
+            _shopPanel.SetActive(true);
+        }
 
-    public void AddEventListeners()
-    {
-        _openShopButton.onClick.RemoveAllListeners();
-        _closeShopButton.onClick.RemoveAllListeners();
-        _openShopButton.onClick.AddListener(OpenShop);
-        _closeShopButton.onClick.AddListener(CloseShop);
-    }
-
-    private void OpenShop()
-    {
-        _shopPanel.SetActive(true);
-    }
-
-    private void CloseShop()
-    {
-        _shopPanel.SetActive(false);
+        private void CloseShop()
+        {
+            _shopPanel.SetActive(false);
+        }
     }
 }

@@ -3,113 +3,105 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour
+namespace Runner
 {
-    public static string FilePathToPlayerData;// = Path.Combine(Application.persistentDataPath, "PlayerData.json");
-    public static string FilePathToCharactersData;// = Path.Combine(Application.persistentDataPath, "Characters.json");
-    private void Awake()
+    public class SaveManager : MonoBehaviour
     {
-        FilePathToPlayerData = Path.Combine(Application.persistentDataPath, "PlayerData.json");
-        // Debug.Log(FilePathToPlayerData);
-        FilePathToCharactersData = Path.Combine(Application.persistentDataPath, "Characters.json");
-        Debug.Log(FilePathToCharactersData);
-    }
-
-    [SerializeField] private CharactersSO _characters;
-    [SerializeField] private PlayerDataSO _playerData;
-    [SerializeField] private List<CharacterDataSO> _characterData;
-    public CharactersSO Characters
-    {
-        get
+        public static string FilePathToPlayerData;// = Path.Combine(Application.persistentDataPath, "PlayerData.json");
+        public static string FilePathToCharactersData;// = Path.Combine(Application.persistentDataPath, "Characters.json");
+        private void Awake()
         {
-            if (_characters == null)
+            FilePathToPlayerData = Path.Combine(Application.persistentDataPath, "PlayerData.json");
+            Debug.Log(FilePathToPlayerData);
+            FilePathToCharactersData = Path.Combine(Application.persistentDataPath, "Characters.json");
+            // Debug.Log(FilePathToCharactersData);
+        }
+
+        [SerializeField] private CharactersSO _characters;
+        [SerializeField] private PlayerDataSO _playerData;
+        // [SerializeField] private List<CharacterDataSO> CharacterDataHolder;
+        public CharactersSO Characters
+        {
+            get
             {
-            _characters = LoadCharacters();
+                if (_characters == null)
+                {
+                    _characters = LoadCharacters();
+                }
+                return _characters;
             }
-            foreach (var character in _characters.unlockedCharacters)
+        }
+
+        // private PlayerDataWrapper _playerData;
+        public PlayerDataWrapper PlayerData
+        {
+            get
             {
-                Debug.Log(character.CharacterName);
-                Debug.Log(character.Price);
-                Debug.Log(character.Speed);
-                Debug.Log(character.Coin);
-                Debug.Log(character.CharacterPrefab);
-
+                // Debug.Log(_playerData.Coin);
+                if (_playerData == null)
+                {
+                    _playerData.PlayerData = LoadPlayer();
+                }
+                return _playerData.PlayerData;
             }
-            return _characters;
+            
         }
-    }
 
-    public PlayerDataSO PlayerData
-    {
-        get
+        public void SavePlayer(PlayerDataWrapper value)
         {
-            if (_playerData == null)
+            Debug.Log("SavePlayer");
+            if (!File.Exists(FilePathToPlayerData))
             {
-            _playerData = LoadPlayer();
+                File.Create(FilePathToPlayerData).Dispose();
             }
-            return _playerData;
-        }
-    }
 
-    public void SavePlayer(PlayerDataSO value)
-    {
-        Debug.Log("SavePlayer");
-        if (!File.Exists(FilePathToPlayerData))
-        {
-            File.Create(FilePathToPlayerData).Dispose();
+            string json = JsonUtility.ToJson(value, true);
+
+            File.WriteAllText(FilePathToPlayerData, json);
+            _playerData.PlayerData = value;
         }
 
-        string json = JsonUtility.ToJson(new PlayerDataSO
+        public void SaveCharacters(CharactersSO value)
         {
-            coin = value.coin,
-            record = value.record,
-            characterPrefab = value.characterPrefab
-        }, true);
+            if (!File.Exists(FilePathToCharactersData))
+            {
+                File.Create(FilePathToCharactersData).Dispose();
+            }
 
-        File.WriteAllText(FilePathToPlayerData, json);
-        _playerData = value;
-    }
+            string json = JsonUtility.ToJson(new CharactersSO
+            {
+                unlockedCharacters = value.unlockedCharacters,
+                lockedCharacters = value.lockedCharacters
+            }, true);
 
-    public void SaveCharacters(CharactersSO value)
-    {
-        if (!File.Exists(FilePathToCharactersData))
-        {
-            File.Create(FilePathToCharactersData).Dispose();
+            File.WriteAllText(FilePathToCharactersData, json);
+            _characters = value;
         }
 
-        string json = JsonUtility.ToJson(new CharactersSO
+        private CharactersSO LoadCharacters()
         {
-            unlockedCharacters = value.unlockedCharacters,
-            lockedCharacters = value.lockedCharacters
-        }, true);
-
-        File.WriteAllText(FilePathToCharactersData, json);
-        _characters = value;
-    }
-
-    private CharactersSO LoadCharacters()
-    {
-        CharactersSO characters = null;
-        if (!File.Exists(FilePathToCharactersData))
-        {
-            SaveCharacters(_characters);
+            CharactersSO characters = null;
+            if (!File.Exists(FilePathToCharactersData))
+            {
+                SaveCharacters(_characters);
+            }
+            string json = File.ReadAllText(FilePathToCharactersData);
+            characters = JsonUtility.FromJson<CharactersSO>(json);
+            return characters;
         }
-        string json = File.ReadAllText(FilePathToCharactersData);
-        characters = JsonUtility.FromJson<CharactersSO>(json);
-        return characters;
-    }
 
-    private PlayerDataSO LoadPlayer()
-    {
-        PlayerDataSO playerData = null;
-        if (!File.Exists(FilePathToPlayerData))
+        private PlayerDataWrapper LoadPlayer()
         {
-            SavePlayer(_playerData);
+            PlayerDataWrapper playerData = null;
+            if (!File.Exists(FilePathToPlayerData))
+            {
+                SavePlayer(_playerData.PlayerData);
+            }
+            string json = File.ReadAllText(FilePathToPlayerData);
+            playerData = JsonUtility.FromJson<PlayerDataWrapper>(json);
+            return playerData;
         }
-        string json = File.ReadAllText(FilePathToPlayerData);
-        playerData = JsonUtility.FromJson<PlayerDataSO>(json);
-        return playerData;
+
     }
 
 }
-
