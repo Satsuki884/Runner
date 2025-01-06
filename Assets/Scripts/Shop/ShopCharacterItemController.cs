@@ -37,6 +37,28 @@ namespace Runner
             Debug.Log("Buy Character");
         }
 
+        private void SetBuyButton(string buyText)
+        {
+            _characterBuyButton.gameObject.SetActive(true);
+            _buyText.text = buyText;
+            _characterUseButton.gameObject.SetActive(false);
+            _characterUsedButton.gameObject.SetActive(false);
+        }
+
+        private void SetUseButton()
+        {
+            _characterBuyButton.gameObject.SetActive(false);
+            _characterUseButton.gameObject.SetActive(true);
+            _characterUsedButton.gameObject.SetActive(false);
+        }
+
+        private void SetUsedButton()
+        {
+            _characterBuyButton.gameObject.SetActive(false);
+            _characterUseButton.gameObject.SetActive(false);
+            _characterUsedButton.gameObject.SetActive(true);
+        }
+
 
         public void SetCharacterData(CharacterDataSO characterData, string buyText)
         {
@@ -49,35 +71,25 @@ namespace Runner
                 PlayerData = GameInstaller.Instance.SaveManager.PlayerData;
             }
 
-
-            if (PlayerData != null &&
-            PlayerData.Coin >= characterData.Price)
+            if (characterData.Price.ToString() == buyText)
             {
-                _buyText.text = buyText;
-                _characterUseButton.gameObject.SetActive(false);
-                _characterUsedButton.gameObject.SetActive(false);
+                SetBuyButton(buyText);
+                if (PlayerData.Coin <= characterData.Price)
+                {
+                    _characterBuyButton.interactable = false;
+                }
             }
-            else
-            if (buyText == "Use")
+            else if (buyText == "Use")
             {
-                _characterBuyButton.gameObject.SetActive(false);
-                _characterUseButton.gameObject.SetActive(true);
-                _characterUsedButton.gameObject.SetActive(false);
-            }
-            else
-            {
-                _characterBuyButton.interactable = false;
-            }
-
-            // Debug.Log(PlayerData.CharacterPrefab);
-            // Debug.Log(characterData.CharacterPrefab);
-
-            if (PlayerData.CharacterPrefab == characterData.CharacterPrefab)
-            {
-                _characterBuyButton.gameObject.SetActive(false);
-                _characterUseButton.gameObject.SetActive(false);
-                _characterUsedButton.gameObject.SetActive(true);
-                _characterUsedButton.interactable = false;
+                if (PlayerData.CharacterPrefab == characterData.CharacterPrefab)
+                {
+                    SetUsedButton();
+                    _characterUsedButton.interactable = false;
+                }
+                else
+                {
+                    SetUseButton();
+                }
             }
         }
     }
