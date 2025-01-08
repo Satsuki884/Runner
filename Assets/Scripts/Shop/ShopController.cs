@@ -43,6 +43,15 @@ namespace Runner
 
         private string _use = "Use";
 
+        public void RefreshShop()
+        {
+            foreach (Transform child in _shopItemsContainer)
+            {
+                Destroy(child.gameObject);
+            }
+            CreateCharacterItems();
+        }
+
         private void CreateCharacterItems()
         {
 

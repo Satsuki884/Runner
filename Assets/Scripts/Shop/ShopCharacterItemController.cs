@@ -19,7 +19,8 @@ namespace Runner
         [SerializeField] private TMP_Text _characterSpeed;
         [SerializeField] private TMP_Text _characterCoin;
         [SerializeField] private TMP_Text _buyText;
-        [SerializeField] private CoinController _coinController;
+        private CoinController _coinController;
+        private ShopController _shopController;
 
 
         private PlayerDataWrapper PlayerData;
@@ -29,6 +30,8 @@ namespace Runner
         public void Start()
         {
             Characters = GameInstaller.Instance.SaveManager.Characters;
+            _coinController = FindObjectOfType<CoinController>();
+            _shopController = FindObjectOfType<ShopController>();
             AddEventListeners();
         }
 
@@ -38,18 +41,14 @@ namespace Runner
             _characterBuyButton.onClick.AddListener(BuyCharacter);
             _characterUseButton.onClick.RemoveAllListeners();
             _characterUseButton.onClick.AddListener(UseCharacter);
-            _characterUsedButton.onClick.RemoveAllListeners();
-            _characterUsedButton.onClick.AddListener(UsedCharacter);
-        }
-
-        private void UsedCharacter()
-        {
-            Debug.Log("Used Character ");
         }
 
         private void UseCharacter()
         {
             Debug.Log("Use Character "  + _characterName.text);
+            PlayerData.CharacterPrefab = character;
+            GameInstaller.Instance.SaveManager.SavePlayer(PlayerData);
+            _shopController.RefreshShop();
         }
 
         private void BuyCharacter()
