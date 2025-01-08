@@ -19,9 +19,11 @@ namespace Runner
         [SerializeField] private TMP_Text _characterSpeed;
         [SerializeField] private TMP_Text _characterCoin;
         [SerializeField] private TMP_Text _buyText;
+        [SerializeField] private CoinController _coinController;
+
+
         private PlayerDataWrapper PlayerData;
         private CharactersSO Characters;
-
         private CharacterDataSO character;
 
         public void Start()
@@ -47,7 +49,7 @@ namespace Runner
 
         private void UseCharacter()
         {
-            Debug.Log("USe Character "  + _characterName.text);
+            Debug.Log("Use Character "  + _characterName.text);
         }
 
         private void BuyCharacter()
@@ -59,6 +61,7 @@ namespace Runner
             Characters.UnlockedCharacters.Add(character);
             GameInstaller.Instance.SaveManager.SaveCharacters(Characters);
             SetCharacterData(character, "Use");
+            _coinController.Refresh();
         }
 
         private void SetBuyButton(string buyText)
