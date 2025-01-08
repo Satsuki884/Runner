@@ -1015,6 +1015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameInstaller
       objectReference: {fileID: 0}
+    - target: {fileID: 6212627516947352789, guid: f22da21210d5d814a9bb9a12ed0bdac6, type: 3}
+      propertyPath: _charactersSo
+      value: 
+      objectReference: {fileID: 11400000, guid: dcaf4fe53f290164085590ab7ec71a3b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

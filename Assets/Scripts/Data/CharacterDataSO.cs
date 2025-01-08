@@ -4,6 +4,17 @@ namespace Runner
     [CreateAssetMenu(fileName = "CharacterData", menuName = "Data/CharacterDataSO", order = 1)]
     public class CharacterDataSO : ScriptableObject
     {
+        [SerializeField] private CharacterDataWrapper _characterDataWrapper;
+        public CharacterDataWrapper CharacterData
+        {
+            get => _characterDataWrapper;
+            set => _characterDataWrapper = value;
+        }
+    }
+
+    [System.Serializable]
+    public class CharacterDataWrapper
+    {
         [SerializeField] private string _characterName;
         [SerializeField] private GameObject _characterPrefab;
         public string CharacterName => _characterName;

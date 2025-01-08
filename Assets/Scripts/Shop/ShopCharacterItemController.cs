@@ -20,9 +20,13 @@ namespace Runner
         [SerializeField] private TMP_Text _characterCoin;
         [SerializeField] private TMP_Text _buyText;
         private PlayerDataWrapper PlayerData;
+        private CharactersSO Characters;
+
+        private CharacterDataSO character;
 
         public void Start()
         {
+            Characters = GameInstaller.Instance.SaveManager.Characters;
             AddEventListeners();
         }
 
@@ -30,11 +34,31 @@ namespace Runner
         {
             _characterBuyButton.onClick.RemoveAllListeners();
             _characterBuyButton.onClick.AddListener(BuyCharacter);
+            _characterUseButton.onClick.RemoveAllListeners();
+            _characterUseButton.onClick.AddListener(UseCharacter);
+            _characterUsedButton.onClick.RemoveAllListeners();
+            _characterUsedButton.onClick.AddListener(UsedCharacter);
+        }
+
+        private void UsedCharacter()
+        {
+            Debug.Log("Used Character ");
+        }
+
+        private void UseCharacter()
+        {
+            Debug.Log("USe Character "  + _characterName.text);
         }
 
         private void BuyCharacter()
         {
-            Debug.Log("Buy Character");
+            Debug.Log("Buy Character " + _characterName.text);
+            PlayerData.Coin -= character.CharacterData.Price;
+            GameInstaller.Instance.SaveManager.SavePlayer(PlayerData);
+            Characters.LockedCharacters.Remove(character);
+            Characters.UnlockedCharacters.Add(character);
+            GameInstaller.Instance.SaveManager.SaveCharacters(Characters);
+            SetCharacterData(character, "Use");
         }
 
         private void SetBuyButton(string buyText)
@@ -62,26 +86,29 @@ namespace Runner
 
         public void SetCharacterData(CharacterDataSO characterData, string buyText)
         {
-            _characterName.text = characterData.CharacterName;
-            _characterSpeed.text = "x" + characterData.Speed.ToString();
-            _characterCoin.text = "x" + characterData.Coin.ToString();
+            character = characterData;
+            _characterName.text = characterData.CharacterData.CharacterName;
+            _characterSpeed.text = "x" + characterData.CharacterData.Speed.ToString();
+            _characterCoin.text = "x" + characterData.CharacterData.Coin.ToString();
+            
 
             if (PlayerData == null)
             {
                 PlayerData = GameInstaller.Instance.SaveManager.PlayerData;
+                Debug.Log(PlayerData.Coin);
             }
 
-            if (characterData.Price.ToString() == buyText)
+            if (characterData.CharacterData.Price.ToString() == buyText)
             {
                 SetBuyButton(buyText);
-                if (PlayerData.Coin <= characterData.Price)
+                if (PlayerData.Coin <= characterData.CharacterData.Price)
                 {
                     _characterBuyButton.interactable = false;
                 }
             }
             else if (buyText == "Use")
             {
-                if (PlayerData.CharacterPrefab == characterData.CharacterPrefab)
+                if (PlayerData.CharacterPrefab.CharacterData.CharacterName == characterData.CharacterData.CharacterName)
                 {
                     SetUsedButton();
                     _characterUsedButton.interactable = false;

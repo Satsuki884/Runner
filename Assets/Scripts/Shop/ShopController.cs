@@ -53,7 +53,9 @@ namespace Runner
             ShopCharacterItemController itemUI;
             float xOffset = 0f;
 
-            foreach (var character in Characters.unlockedCharacters)
+        
+
+            foreach (var character in Characters.UnlockedCharacters)
             {
                 itemUI = Instantiate(_characterItemPrefab, _shopItemsContainer.transform).GetComponent<ShopCharacterItemController>();
 
@@ -64,11 +66,11 @@ namespace Runner
                 xOffset += _itemWidth;
             }
 
-            foreach (var character in Characters.lockedCharacters)
+            foreach (var character in Characters.LockedCharacters)
             {
                 itemUI = Instantiate(_characterItemPrefab, _shopItemsContainer.transform).GetComponent<ShopCharacterItemController>();
 
-                itemUI.SetCharacterData(character, character.Price.ToString());
+                itemUI.SetCharacterData(character, character.CharacterData.Price.ToString());
 
                 RectTransform itemRect = itemUI.GetComponent<RectTransform>();
                 itemRect.anchoredPosition = new Vector2(xOffset, 0);

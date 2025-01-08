@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be44ad6c581f5c46844d81f10aa0fad, type: 3}
   m_Name: Bot
   m_EditorClassIdentifier: 
-  _characterName: Bot
-  _characterPrefab: {fileID: 919132149155446097, guid: be0bf49445822a04e9b5f57fa338e139, type: 3}
-  _price: 120
-  _speed: 0
-  _coin: 0
+  _characterDataWrapper:
+    _characterName: Bot
+    _characterPrefab: {fileID: 919132149155446097, guid: be0bf49445822a04e9b5f57fa338e139, type: 3}
+    _price: 100
+    _speed: 0
+    _coin: 0

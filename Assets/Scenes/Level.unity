@@ -440,7 +440,7 @@ MonoBehaviour:
   _tileHolder: {fileID: 1306227134}
   _coin: {fileID: 2499345397567209369, guid: 069e18da8cfdb0f4681ac3ee0e4c9075, type: 3}
   _bomb: {fileID: 75607532394581333, guid: 60315f2dc83fe7148883543ffdd8a8d9, type: 3}
-  _startSpawnBomb: 3
+  _startSpawnBomb: 1
 --- !u!4 &994916267
 Transform:
   m_ObjectHideFlags: 0

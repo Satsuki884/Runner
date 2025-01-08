@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Runner
@@ -17,8 +18,9 @@ namespace Runner
             // Debug.Log(FilePathToCharactersData);
         }
 
-        [SerializeField] private CharactersSO _characters;
+        private CharactersDataHolder _charactersHolder;
         [SerializeField] private PlayerDataSO _playerData;
+        [SerializeField] private CharactersSO _characters;
         // [SerializeField] private List<CharacterDataSO> CharacterDataHolder;
         public CharactersSO Characters
         {
@@ -68,10 +70,10 @@ namespace Runner
                 File.Create(FilePathToCharactersData).Dispose();
             }
 
-            string json = JsonUtility.ToJson(new CharactersSO
+            string json = JsonUtility.ToJson(new CharactersDataHolder
             {
-                unlockedCharacters = value.unlockedCharacters,
-                lockedCharacters = value.lockedCharacters
+                UnlockedCharacters = value.UnlockedCharacters,
+                LockedCharacters = value.LockedCharacters
             }, true);
 
             File.WriteAllText(FilePathToCharactersData, json);
@@ -80,13 +82,24 @@ namespace Runner
 
         private CharactersSO LoadCharacters()
         {
-            CharactersSO characters = null;
             if (!File.Exists(FilePathToCharactersData))
             {
                 SaveCharacters(_characters);
             }
             string json = File.ReadAllText(FilePathToCharactersData);
-            characters = JsonUtility.FromJson<CharactersSO>(json);
+            _charactersHolder = JsonUtility.FromJson<CharactersDataHolder>(json);
+            return ConvertToCharactersSO();
+        }
+
+        private CharactersSO ConvertToCharactersSO()
+        {
+            CharactersSO characters = null;
+            if (_charactersHolder != null)
+            {
+                characters = ScriptableObject.CreateInstance<CharactersSO>();
+                characters.UnlockedCharacters = _charactersHolder.UnlockedCharacters;
+                characters.LockedCharacters = _charactersHolder.LockedCharacters;
+            }
             return characters;
         }
 

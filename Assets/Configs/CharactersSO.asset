@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5243115b24bd3e442aaa42a035cb027d, type: 3}
   m_Name: CharactersSO
   m_EditorClassIdentifier: 
-  unlockedCharacters:
+  _unlockedCharacters:
   - {fileID: 11400000, guid: 93d0f0d03df1ae3459fcc81c977474e4, type: 2}
-  lockedCharacters:
   - {fileID: 11400000, guid: de7aeea76823c6242924effc794aabd9, type: 2}
+  _lockedCharacters:
   - {fileID: 11400000, guid: 5092639376744784c87f6dfd13b4cf61, type: 2}
   - {fileID: 11400000, guid: 3915d14a60766294482d7478e9c14e1e, type: 2}
