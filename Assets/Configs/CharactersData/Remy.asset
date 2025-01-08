@@ -16,5 +16,5 @@ MonoBehaviour:
     _characterName: Remy
     _characterPrefab: {fileID: 919132149155446097, guid: ed54b4e10c43c214a89db914fbc6721a, type: 3}
     _price: 10
-    _speed: 0
-    _coin: 0
+    _speed: 0.5
+    _coin: 1.5

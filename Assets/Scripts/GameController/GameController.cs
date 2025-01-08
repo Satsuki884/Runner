@@ -47,7 +47,7 @@ namespace Runner
         public void AddCoin()
         {
             _coinsCount++;
-            _coinsText.text = _coinsCount.ToString();
+            _coinsText.text = Mathf.RoundToInt(_coinsCount * _saveManager.PlayerData.CharacterPrefab.CharacterData.Coin).ToString();
             if (_coinsCount > _saveManager.PlayerData.Record)
             {
                 _recordText.text = _coinsCount.ToString();

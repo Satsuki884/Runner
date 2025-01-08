@@ -32,7 +32,7 @@ namespace Runner
 
         void Update()
         {
-            if (_isAlive) _characterController.Move(Vector3.right * _speed * Input.GetAxis("Horizontal") * Time.deltaTime);
+            if (_isAlive) _characterController.Move(Vector3.right * _speed* PlayerData.CharacterPrefab.CharacterData.Speed * Input.GetAxis("Horizontal") * Time.deltaTime);
         }
 
         public void Die()

@@ -1,4 +1,5 @@
 using UnityEngine;
+
 namespace Runner
 {
     [CreateAssetMenu(fileName = "PlayerData", menuName = "Data/PlayerData", order = 1)]

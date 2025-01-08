@@ -16,5 +16,5 @@ MonoBehaviour:
     _characterName: Bot
     _characterPrefab: {fileID: 919132149155446097, guid: be0bf49445822a04e9b5f57fa338e139, type: 3}
     _price: 100
-    _speed: 0
-    _coin: 0
+    _speed: 1
+    _coin: 1
