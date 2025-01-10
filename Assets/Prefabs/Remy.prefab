@@ -147,4 +147,5 @@ MonoBehaviour:
       m_Calls: []
   _speed: 5
   _characterController: {fileID: 624101219029587982}
+  _characterName: Remy
   _gameController: {fileID: 0}

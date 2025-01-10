@@ -18,7 +18,7 @@ namespace Runner
         [SerializeField] private string _characterName;
         [SerializeField] private GameObject _characterPrefab;
         public string CharacterName => _characterName;
-        public GameObject CharacterPrefab { get; set; }
+        public GameObject CharacterPrefab => _characterPrefab;
 
         [SerializeField] private int _price;
         public int Price => _price;

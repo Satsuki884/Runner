@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterDataWrapper:
     _characterName: Alien
-    _characterPrefab: {fileID: 919132149155446097, guid: 6ede066007e98c549af62cbb5937ed10, type: 3}
+    _characterPrefab: {fileID: 8434310505263936988, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
     _price: 10
     _speed: 1.5
     _coin: 0.5

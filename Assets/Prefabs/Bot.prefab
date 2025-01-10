@@ -119,4 +119,5 @@ MonoBehaviour:
       m_Calls: []
   _speed: 10
   _characterController: {fileID: 8696846832016290844}
+  _characterName: Bot
   _gameController: {fileID: 0}

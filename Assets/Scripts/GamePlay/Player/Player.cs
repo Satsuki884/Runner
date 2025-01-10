@@ -13,6 +13,8 @@ namespace Runner
 
         [SerializeField] private float _speed = 5;
         [SerializeField] private CharacterController _characterController;
+        [SerializeField] private string _characterName;
+        public string CharacterName => _characterName;
 
         private SaveManager _saveManager;
 

@@ -135,4 +135,5 @@ MonoBehaviour:
       m_Calls: []
   _speed: 5
   _characterController: {fileID: 153331127872947205}
+  _characterName: Alien
   _gameController: {fileID: 0}

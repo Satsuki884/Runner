@@ -135,4 +135,5 @@ MonoBehaviour:
       m_Calls: []
   _speed: 5
   _characterController: {fileID: 3355474056313599912}
+  _characterName: Maneken
   _gameController: {fileID: 0}

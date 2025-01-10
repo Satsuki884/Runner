@@ -12,13 +12,15 @@ namespace Runner
 
         [SerializeField] private TextMeshProUGUI _coinsText;
         [SerializeField] private TextMeshProUGUI _recordText;
-        [SerializeField] private Player _player;
+        private Player _player;
+        [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private TileGenerator _tileGenerator;
         [SerializeField] private Tile _tile;
         private int _coinsCount;
         public int CoinsCount => _coinsCount;
 
         private SaveManager _saveManager;
+        private PlayerDataWrapper PlayerData { get; set; }
 
         [SerializeField] private UnityEngine.UI.Button button;
 
@@ -26,6 +28,20 @@ namespace Runner
         void Start()
         {
             _saveManager = GameInstaller.Instance.SaveManager;
+            PlayerData = _saveManager.PlayerData;
+            _player = FindObjectOfType<Player>();
+            if(_player != null && _player.CharacterName != PlayerData.CharacterPrefab.CharacterData.CharacterName)
+            {
+                Destroy(_player.gameObject);
+                Instantiate(PlayerData.CharacterPrefab.CharacterData.CharacterPrefab, _playerPrefab.transform.position, Quaternion.identity);
+                _player = FindObjectOfType<Player>();
+                
+            } else if(_player == null)
+            {
+                Instantiate(PlayerData.CharacterPrefab.CharacterData.CharacterPrefab, _playerPrefab.transform.position, Quaternion.identity);
+                _player = FindObjectOfType<Player>();
+            }
+            
             _player.DieEvent.AddListener(LoseHandler);
             _recordText.text = _saveManager.PlayerData.Record.ToString();
         }
