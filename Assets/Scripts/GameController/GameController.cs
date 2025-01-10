@@ -13,7 +13,6 @@ namespace Runner
         [SerializeField] private TextMeshProUGUI _coinsText;
         [SerializeField] private TextMeshProUGUI _recordText;
         private Player _player;
-        [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private TileGenerator _tileGenerator;
         [SerializeField] private Tile _tile;
         private int _coinsCount;
@@ -33,12 +32,12 @@ namespace Runner
             if(_player != null && _player.CharacterName != PlayerData.CharacterPrefab.CharacterData.CharacterName)
             {
                 Destroy(_player.gameObject);
-                Instantiate(PlayerData.CharacterPrefab.CharacterData.CharacterPrefab, _playerPrefab.transform.position, Quaternion.identity);
+                Instantiate(PlayerData.CharacterPrefab.CharacterData.CharacterPrefab );
                 _player = FindObjectOfType<Player>();
                 
             } else if(_player == null)
             {
-                Instantiate(PlayerData.CharacterPrefab.CharacterData.CharacterPrefab, _playerPrefab.transform.position, Quaternion.identity);
+                Instantiate(PlayerData.CharacterPrefab.CharacterData.CharacterPrefab);
                 _player = FindObjectOfType<Player>();
             }
             

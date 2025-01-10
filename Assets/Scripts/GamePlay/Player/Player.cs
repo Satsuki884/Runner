@@ -23,18 +23,20 @@ namespace Runner
 
         private PlayerDataWrapper PlayerData { get; set; }
 
-        [SerializeField] private GameController _gameController;
+        private GameController _gameController;
 
         void Start()
         {
+            _gameController = FindObjectOfType<GameController>();
             _saveManager = GameInstaller.Instance.SaveManager;
             PlayerData = _saveManager.PlayerData;
             _animator = GetComponent<Animator>();
+            Debug.Log(_animator);
         }
 
         void Update()
         {
-            if (_isAlive) _characterController.Move(Vector3.right * _speed* PlayerData.CharacterPrefab.CharacterData.Speed * Input.GetAxis("Horizontal") * Time.deltaTime);
+            if (_isAlive) _characterController.Move(Vector3.right * _speed * PlayerData.CharacterPrefab.CharacterData.Speed * Input.GetAxis("Horizontal") * Time.deltaTime);
         }
 
         public void Die()
@@ -48,12 +50,16 @@ namespace Runner
             _animator.SetTrigger("Die");
             _isAlive = false;
             DieEvent?.Invoke();
+            Debug.Log(_gameController);
+            Debug.Log(_gameController.CoinsCount);
+            Debug.Log(PlayerData.Coin);
 
             if (_gameController.CoinsCount > PlayerData.Record)
             {
                 PlayerData.Record = _gameController.CoinsCount;
             }
             PlayerData.Coin = _gameController.CoinsCount + PlayerData.Coin;
+            Debug.Log(PlayerData.Coin);
             _saveManager.SavePlayer(PlayerData);
         }
 

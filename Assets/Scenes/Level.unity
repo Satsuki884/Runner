@@ -471,7 +471,7 @@ MonoBehaviour:
   _tileHolder: {fileID: 1306227134}
   _coin: {fileID: 2499345397567209369, guid: 069e18da8cfdb0f4681ac3ee0e4c9075, type: 3}
   _bomb: {fileID: 75607532394581333, guid: 60315f2dc83fe7148883543ffdd8a8d9, type: 3}
-  _startSpawnBomb: 1
+  _startSpawnBomb: 0
 --- !u!4 &994916267
 Transform:
   m_ObjectHideFlags: 0
@@ -535,6 +535,71 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1035019686
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 262330413619843679, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: be0bf49445822a04e9b5f57fa338e139, type: 3}
+    - target: {fileID: 262330413619843679, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434310505263936988, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_Name
+      value: Alien
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.100000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099347241963515750, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 191e65fa885a65d408ffa81563ace2a8, type: 3}
 --- !u!1 &1122724340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 7340336423217518722, guid: 148f6eb22aa6dcb4595bbf082fa0cfe4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7968501316983816760, guid: 148f6eb22aa6dcb4595bbf082fa0cfe4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1653,7 +1722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coinsText: {fileID: 1840201251}
   _recordText: {fileID: 1885017294}
-  _playerPrefab: {fileID: 313758894}
   _tileGenerator: {fileID: 994916266}
   _tile: {fileID: 8048372545305118695, guid: bf35b768d0f1fd246b8440860d629017, type: 3}
   button: {fileID: 1536451469}
@@ -1754,3 +1822,4 @@ SceneRoots:
   - {fileID: 932553543}
   - {fileID: 616133877}
   - {fileID: 1147921147}
+  - {fileID: 1035019686}
