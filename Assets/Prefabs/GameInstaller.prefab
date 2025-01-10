@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b514326054cd0d442a8540dfcf0f8416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characters: {fileID: 11400000, guid: dcaf4fe53f290164085590ab7ec71a3b, type: 2}
   _playerData: {fileID: 11400000, guid: 4e254240e819f1a48b98f70da4a0a427, type: 2}
+  _characters: {fileID: 11400000, guid: dcaf4fe53f290164085590ab7ec71a3b, type: 2}
 --- !u!1 &2211058665102740016
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +243,52 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3655497566455680475}
   m_Enabled: 1
+--- !u!1 &3729102117858850850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710059116547075514}
+  - component: {fileID: 8840811174545595056}
+  m_Layer: 0
+  m_Name: SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1710059116547075514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729102117858850850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2534878329367035130}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8840811174545595056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729102117858850850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2e4371918386446954075947e71353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainMenuScene: MainMenu
+  _gameScene: Game
 --- !u!1 &4216895185010254581
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +321,7 @@ Transform:
   m_Children:
   - {fileID: 4701698161034253483}
   - {fileID: 3334875390105401862}
+  - {fileID: 1710059116547075514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1408479605204301043
@@ -291,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _saveManager: {fileID: 6212627516947352789}
   _audioManager: {fileID: 8092643861453261040}
+  _sceneController: {fileID: 8840811174545595056}
 --- !u!1 &6172114924838132051
 GameObject:
   m_ObjectHideFlags: 0

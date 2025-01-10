@@ -13,7 +13,6 @@ namespace Runner
             {
                 if (_instance == null)
                 {
-                    // Debug.LogError("GameInstaller is null.");
                     _instance = FindObjectOfType<GameInstaller>();
                     DontDestroyOnLoad(_instance);
                 }
@@ -28,17 +27,6 @@ namespace Runner
             set => _saveManager = value;
         }
 
-        public static bool IsInitialized => _instance != null;
-
-        // public static GameInstaller GetInstance()
-        // {
-        //     if (!IsInitialized)
-        //     {
-        //         throw new System.Exception("GameInstaller is not initialized.");
-        //     }
-        //     return _instance;
-        // }
-
         [SerializeField] private AudioManager _audioManager;
         public AudioManager AudioManager
         {
@@ -46,17 +34,11 @@ namespace Runner
             set => _audioManager = value;
         }
 
-        // private void Awake()
-        // {
-        //     if (_instance == null)
-        //     {
-        //         _instance = this;
-        //         DontDestroyOnLoad(gameObject);
-        //     }
-        //     else if (_instance != this)
-        //     {
-        //         Destroy(gameObject); // Предотвращение дублирования
-        //     }
-        // }
+        [SerializeField] private SceneController _sceneController;
+        public SceneController SceneController
+        {
+            get => _sceneController;
+            set => _sceneController = value;
+        }
     }
 }

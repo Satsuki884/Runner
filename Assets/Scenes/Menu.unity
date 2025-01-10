@@ -1141,10 +1141,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameInstaller
       objectReference: {fileID: 0}
-    - target: {fileID: 6212627516947352789, guid: f22da21210d5d814a9bb9a12ed0bdac6, type: 3}
-      propertyPath: _charactersSo
-      value: 
-      objectReference: {fileID: 11400000, guid: dcaf4fe53f290164085590ab7ec71a3b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3624,6 +3620,7 @@ GameObject:
   - component: {fileID: 1289706180}
   - component: {fileID: 1289706182}
   - component: {fileID: 1289706181}
+  - component: {fileID: 1289706183}
   m_Layer: 5
   m_Name: MenuPanel
   m_TagString: Untagged
@@ -3694,6 +3691,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289706179}
   m_CullTransparentMesh: 1
+--- !u!114 &1289706183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289706179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38982746117bd6740ac404a717b343c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startButton: {fileID: 210261161}
+  _exitButton: {fileID: 172218679}
 --- !u!1 &1379827744
 GameObject:
   m_ObjectHideFlags: 0

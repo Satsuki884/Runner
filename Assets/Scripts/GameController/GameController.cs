@@ -4,11 +4,13 @@ using UnityEngine;
 using TMPro;
 using System;
 using Zenject;
+using UnityEngine.UI;
 
 namespace Runner
 {
     public class GameController : MonoBehaviour
     {
+        [SerializeField] private Button _menuButton;
 
         [SerializeField] private TextMeshProUGUI _coinsText;
         [SerializeField] private TextMeshProUGUI _recordText;
@@ -19,6 +21,7 @@ namespace Runner
         public int CoinsCount => _coinsCount;
 
         private SaveManager _saveManager;
+        private SceneController _sceneController;
         private PlayerDataWrapper PlayerData { get; set; }
 
         [SerializeField] private UnityEngine.UI.Button button;
@@ -27,6 +30,7 @@ namespace Runner
         void Start()
         {
             _saveManager = GameInstaller.Instance.SaveManager;
+            _sceneController = GameInstaller.Instance.SceneController;
             PlayerData = _saveManager.PlayerData;
             _player = FindObjectOfType<Player>();
             if(_player != null && _player.CharacterName != PlayerData.CharacterPrefab.CharacterData.CharacterName)
@@ -43,7 +47,15 @@ namespace Runner
             
             _player.DieEvent.AddListener(LoseHandler);
             _recordText.text = _saveManager.PlayerData.Record.ToString();
+            _menuButton.onClick.RemoveAllListeners();
+            _menuButton.onClick.AddListener(ExitToMenu);
         }
+
+        private void ExitToMenu()
+        {
+            _sceneController.LoadScene(_sceneController.MenuScene);
+        }
+
         private void LoseHandler()
         {
             Debug.Log("end");

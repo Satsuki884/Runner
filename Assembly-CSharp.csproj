@@ -111,6 +111,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\GameController\GameController.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopController.cs" />
+    <Compile Include="Assets\Scripts\Menu\MenuController.cs" />
+    <Compile Include="Assets\Scripts\GameController\SceneController.cs" />
     <Compile Include="Assets\Scripts\GamePlay\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopCharacterItemController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
