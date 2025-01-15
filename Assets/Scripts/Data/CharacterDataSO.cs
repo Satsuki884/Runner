@@ -27,5 +27,12 @@ namespace Runner
         public float Speed => _speed;
         [SerializeField] private float _coin;
         public float Coin => _coin;
+
+        [Header("Character Icon")]
+        [SerializeField] private Vector2 _UVRectXY;
+        [SerializeField] private Vector2 _UVRectWH;
+
+        public Vector2 UVRectXY => _UVRectXY;
+        public Vector2 UVRectWH => _UVRectWH;
     }
 }

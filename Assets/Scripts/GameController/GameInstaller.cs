@@ -7,16 +7,30 @@ namespace Runner
     public class GameInstaller : MonoBehaviour
     {
         private static GameInstaller _instance;
-        public static GameInstaller Instance
+        public static GameInstaller Instance => _instance;
+        // {
+        //     get
+        //     {
+        //         if (_instance == null)
+        //         {
+        //             _instance = FindObjectOfType<GameInstaller>();
+        //             DontDestroyOnLoad(_instance);
+        //         }
+        //         return _instance;
+        //     }
+        // }
+
+        private void Awake()
         {
-            get
+            if (_instance == null)
             {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<GameInstaller>();
-                    DontDestroyOnLoad(_instance);
-                }
-                return _instance;
+                // _instance = this;
+                _instance = FindObjectOfType<GameInstaller>();
+                DontDestroyOnLoad(_instance);
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 

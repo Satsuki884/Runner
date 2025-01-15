@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9d0110b4e1738704c91466a7284fc41d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.39796114
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d0110b4e1738704c91466a7284fc41d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d0110b4e1738704c91466a7284fc41d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.81758857
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d0110b4e1738704c91466a7284fc41d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -106,7 +106,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3137058808896492766}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 9d0110b4e1738704c91466a7284fc41d, type: 3}
   m_Controller: {fileID: 9100000, guid: 5479515cf6490024db8ea89055fac375, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -136,4 +136,3 @@ MonoBehaviour:
   _speed: 5
   _characterController: {fileID: 3355474056313599912}
   _characterName: Maneken
-  _gameController: {fileID: 0}

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -23,17 +22,18 @@ namespace Runner
         [SerializeField] private AudioClip _buttonClick;
         [SerializeField] private AudioClip _coinPickup;
 
-        [Header("Scenes")]
-        [SerializeField] private string _menuScene;
-        [SerializeField] private string _levelScene;
+        private string _gameScene;
+        private string _menuScene;
 
         private void Start()
         {
+            _gameScene = GameInstaller.Instance.SceneController.GameScene;
+            _menuScene = GameInstaller.Instance.SceneController.MenuScene;
             if (SceneManager.GetActiveScene().name == _menuScene)
             {
                 _musicSource.clip = _backgroundMusic;
             }
-            else if (SceneManager.GetActiveScene().name == _levelScene)
+            else if (SceneManager.GetActiveScene().name == _gameScene)
             {
                 _musicSource.clip = _LevelMusic;
             }

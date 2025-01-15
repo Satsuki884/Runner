@@ -17,13 +17,12 @@ namespace Runner
         public string CharacterName => _characterName;
 
         private SaveManager _saveManager;
-
         private Animator _animator;
         private bool _isAlive = true;
-
         private PlayerDataWrapper PlayerData { get; set; }
-
         private GameController _gameController;
+
+        private float _maxSpeed ;
 
         void Start()
         {
@@ -32,13 +31,14 @@ namespace Runner
             PlayerData = _saveManager.PlayerData;
             _animator = GetComponent<Animator>();
             Debug.Log(_animator);
+            _maxSpeed = PlayerData.CharacterPrefab.CharacterData.Speed * _speed;
         }
 
         void Update()
         {
-            if (_isAlive) _characterController.Move(Vector3.right * _speed * PlayerData.CharacterPrefab.CharacterData.Speed * Input.GetAxis("Horizontal") * Time.deltaTime);
+            if (_isAlive) _characterController.Move(Vector3.right * _maxSpeed * Input.GetAxis("Horizontal") * Time.deltaTime);
         }
-
+        
         public void Die()
         {
             if (_isAlive == false)

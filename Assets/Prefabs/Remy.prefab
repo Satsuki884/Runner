@@ -92,7 +92,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4920872738210825839}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: ed54b4e10c43c214a89db914fbc6721a, type: 3}
   m_Controller: {fileID: 9100000, guid: 5479515cf6490024db8ea89055fac375, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -148,4 +148,3 @@ MonoBehaviour:
   _speed: 5
   _characterController: {fileID: 624101219029587982}
   _characterName: Remy
-  _gameController: {fileID: 0}

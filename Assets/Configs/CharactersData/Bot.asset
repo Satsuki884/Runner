@@ -18,3 +18,5 @@ MonoBehaviour:
     _price: 100
     _speed: 1
     _coin: 1
+    _UVRectXY: {x: 0.28, y: 0.4}
+    _UVRectWH: {x: 0.2, y: 0.25}

@@ -19,6 +19,8 @@ namespace Runner
         [SerializeField] private TMP_Text _characterSpeed;
         [SerializeField] private TMP_Text _characterCoin;
         [SerializeField] private TMP_Text _buyText;
+
+        [SerializeField] private RawImage _characterIcon;
         private CoinController _coinController;
         private ShopController _shopController;
 
@@ -92,6 +94,10 @@ namespace Runner
             _characterName.text = characterData.CharacterData.CharacterName;
             _characterSpeed.text = "x" + characterData.CharacterData.Speed.ToString();
             _characterCoin.text = "x" + characterData.CharacterData.Coin.ToString();
+            _characterIcon.uvRect = new Rect(characterData.CharacterData.UVRectXY.x, 
+                                            characterData.CharacterData.UVRectXY.y, 
+                                            characterData.CharacterData.UVRectWH.x, 
+                                            characterData.CharacterData.UVRectWH.y);
             
 
             if (PlayerData == null)
