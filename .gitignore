@@ -6,3 +6,6 @@
 /Logs
 *.log
 /Assets/Plugins/Zenject
+/Assets/Editor Default Resources/Firebase
+/Assets/ExternalDependencyManager
+/Assets/Firebase

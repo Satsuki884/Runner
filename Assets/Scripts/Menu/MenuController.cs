@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Analytics;
 
 namespace Runner
 {
@@ -28,6 +29,7 @@ namespace Runner
 
         private void StartGame()
         {
+            GameAnalytics.gameAnalytics.StartGameEvent();
             _sceneController.LoadScene(_sceneController.GameScene);
         }
     }

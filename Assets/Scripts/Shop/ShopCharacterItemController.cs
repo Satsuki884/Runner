@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Analytics;
 
 namespace Runner
 {
@@ -55,6 +56,8 @@ namespace Runner
 
         private void BuyCharacter()
         {
+            GameAnalytics.gameAnalytics.BuyCharacterEvent(character.CharacterData.CharacterName);
+
             Debug.Log("Buy Character " + _characterName.text);
             PlayerData.Coin -= character.CharacterData.Price;
             GameInstaller.Instance.SaveManager.SavePlayer(PlayerData);
