@@ -7213,7 +7213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309305685702893736, guid: 5b159cd560d47ef418f3e2d89e0849d2, type: 3}
       propertyPath: m_UVRect.y
-      value: 0.4
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 309305685702893736, guid: 5b159cd560d47ef418f3e2d89e0849d2, type: 3}
       propertyPath: m_UVRect.width
@@ -7221,7 +7221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309305685702893736, guid: 5b159cd560d47ef418f3e2d89e0849d2, type: 3}
       propertyPath: m_UVRect.height
-      value: 0.25
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4608145452160529807, guid: 5b159cd560d47ef418f3e2d89e0849d2, type: 3}
       propertyPath: _coinController

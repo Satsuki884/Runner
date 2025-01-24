@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _playerDataWrapper:
-    _coin: 0
+    _coin: 16
     _record: 0
-    _characterPrefab: {fileID: 11400000, guid: 93d0f0d03df1ae3459fcc81c977474e4, type: 2}
+    _characterPrefab: {fileID: 11400000, guid: de7aeea76823c6242924effc794aabd9, type: 2}
